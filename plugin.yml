@@ -1,7 +1,7 @@
 ---
-name: OneSleep
-version: 0.0.1
-main: DerphSZ\OneSleep\Main
+name: SinglePlayerSleep
+version: 1.0
+main: DerphSZ\SinglePlayerSleep\Main
 api: 3.0.0
 author: DerphSZ
 ...
