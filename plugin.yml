@@ -1,0 +1,7 @@
+---
+name: OneSleep
+version: 0.0.1
+main: DerphSZ\OneSleep\Main
+api: 3.0.0
+author: DerphSZ
+...
