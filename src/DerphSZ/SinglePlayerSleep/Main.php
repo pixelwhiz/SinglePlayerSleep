@@ -55,4 +55,3 @@ class SleepTask extends Task {
 		
     }
 }	
-	
