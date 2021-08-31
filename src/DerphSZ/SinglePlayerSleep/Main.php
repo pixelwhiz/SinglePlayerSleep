@@ -46,7 +46,7 @@ class SleepTask extends Task {
 	$this->player = $player;
     }
     public function onRun($tick){
-        $player = $this->getServer()->getPlayer($this->player);
+        $player = $this->main->getServer()->getPlayer($this->player);
 	if($player->isSleeping()){
             $player->getLevel()->setTime(Main::TIME_SUNRISE);
             $player->stopSleep();
