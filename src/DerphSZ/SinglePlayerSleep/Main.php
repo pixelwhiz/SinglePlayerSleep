@@ -41,7 +41,7 @@ class Main extends PluginBase implements Listener {
 }
 
 class SleepTask extends Task {
-    public function __construct(Main $main){
+    public function __construct(Main $main, $player){
         $this->main = $main;
 	$this->player = $player;
     }
