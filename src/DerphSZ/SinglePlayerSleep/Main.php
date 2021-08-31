@@ -32,7 +32,7 @@ class Main extends PluginBase implements Listener {
 	
     public function onEnterBed(PlayerBedEnterEvent $event) {
         $player = $event->getPlayer();
-        $this->getScheduler()->scheduleDelayedTask(new SleepTask ($this), 20 * 3);
+        $this->getScheduler()->scheduleDelayedTask(new SleepTask ($this, $player->getName()), 20 * 3);
     }
 	
     public function onDisable(){
@@ -43,15 +43,14 @@ class Main extends PluginBase implements Listener {
 class SleepTask extends Task {
     public function __construct(Main $main){
         $this->main = $main;
+	$this->player = $player;
     }
     public function onRun($tick){
-        foreach($this->main->getServer()->getOnlinePlayers() as $player){
-            if($player->isSleeping()){
-                $player->getLevel()->setTime(Main::TIME_SUNRISE);
-                $player->stopSleep();
-	    }
-            return true;
-        }
-		
+        $player = $this->getServer()->getPlayer($this->player);
+	if($player->isSleeping()){
+            $player->getLevel()->setTime(Main::TIME_SUNRISE);
+            $player->stopSleep();
+	}
+        return true;
     }
 }	
