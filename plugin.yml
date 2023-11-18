@@ -1,0 +1,7 @@
+---
+name: SinglePlayerSleep
+version: 0.0.1
+main: pixelwhiz\singleplayersleep\Main
+api: 5.0.0
+src-namespace-prefix: pixelwhiz\singleplayersleep
+...
