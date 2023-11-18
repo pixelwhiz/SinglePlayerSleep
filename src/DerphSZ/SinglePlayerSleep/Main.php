@@ -25,16 +25,13 @@ class Main extends PluginBase implements Listener {
 
     public const TIME_FULL = 24000;
 	
-    public function onEnable(){
+    public function onEnable() : void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 	
     public function onEnterBed(PlayerBedEnterEvent $event) {
         $player = $event->getPlayer();
         $this->getScheduler()->scheduleDelayedTask(new SleepTask ($this, $player->getName()), 20 * 5);
-    }
-	
-    public function onDisable(){
     }
 
 }
@@ -44,12 +41,14 @@ class SleepTask extends Task {
         $this->main = $main;
 	$this->player = $player;
     }
-    public function onRun($tick){
-        $player = $this->main->getServer()->getPlayer($this->player);
-	if($player->isSleeping()){
+
+    public function onRun(): void
+    {
+        $player = $this->main->getServer()->getPlayerExact($this->player);
+        if($player->isSleeping()){
             $player->getWorld()->setTime(Main::TIME_SUNRISE);
             $player->stopSleep();
-	}
-        return true;
+        }
     }
+
 }

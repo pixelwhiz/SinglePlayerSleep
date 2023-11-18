@@ -2,6 +2,6 @@
 name: SinglePlayerSleep
 version: 3.0.0
 main: DerphSZ\SinglePlayerSleep\Main
-api: 4.0.0
+api: 5.0.0
 author: DerphSZ
 ...
