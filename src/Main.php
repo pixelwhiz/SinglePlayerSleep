@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DerphSZ\SinglePlayerSleep;
+namespace pixelwhiz\singleplayersleep;
 
 use pocketmine\event\player\PlayerBedEnterEvent;
 use pocketmine\Player;

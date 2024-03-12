@@ -1,7 +1,8 @@
 ---
 name: SinglePlayerSleep
 version: 3.0.0
-main: DerphSZ\SinglePlayerSleep\Main
+main: pixelwhiz\singleplayersleep\Main
 api: 5.0.0
-author: DerphSZ
+author: PixelWhiz
+src-namespace-prefix: pixelwhiz\singleplayersleep
 ...
