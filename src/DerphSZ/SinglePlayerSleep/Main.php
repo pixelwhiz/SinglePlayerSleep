@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace DerphSZ\SinglePlayerSleep;
 
-use pocketmine\player\Player;
-use pocketmine\Server;
-
 use pocketmine\event\player\PlayerBedEnterEvent;
+use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 
 use pocketmine\scheduler\Task;
@@ -24,27 +22,36 @@ class Main extends PluginBase implements Listener {
     public const TIME_SUNRISE = 23000;
 
     public const TIME_FULL = 24000;
+
+    public static Main $instance;
+
 	
     public function onEnable() : void {
-        $this->getServer()->getPluginManager()->registerEvents($this, $this);
+        self::$instance = $this;
+    }
+
+    public static function getInstance() : Main {
+        return self::$instance;
     }
 	
     public function onEnterBed(PlayerBedEnterEvent $event) {
         $player = $event->getPlayer();
-        $this->getScheduler()->scheduleDelayedTask(new SleepTask ($this, $player->getName()), 20 * 5);
+        $this->getScheduler()->scheduleDelayedTask(new SleepTask ($player), 20 * 5);
     }
 
 }
 
 class SleepTask extends Task {
-    public function __construct(Main $main, $player){
-        $this->main = $main;
-	$this->player = $player;
+
+    private Player $player;
+
+    public function __construct(Player $player) {
+        $this->player = $player;
     }
 
     public function onRun(): void
     {
-        $player = $this->main->getServer()->getPlayerExact($this->player);
+        $player = Main::getInstance()->getServer()->getPlayerExact($this->player->getName());
         if($player->isSleeping()){
             $player->getWorld()->setTime(Main::TIME_SUNRISE);
             $player->stopSleep();
